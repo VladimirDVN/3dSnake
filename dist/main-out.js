@@ -66558,9 +66558,10 @@ let rightmostCellCenter = cellWidth * CELLS_RIGHT_OF_CENTER;
 let newHeadPos = new Vector3();
 let foodPos = new Vector3();// Рендерер
 const renderer = new WebGLRenderer({  antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+const leftW = Math.floor(window.innerWidth* 0.5);
+renderer.setSize(leftW, window.innerHeight);
 //renderer.setSize(len, len);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 document.body.appendChild(renderer.domElement);
 let resultInf = false;
 let segments = [];
@@ -66665,7 +66666,7 @@ const camera2 = new PerspectiveCamera(
 // Создаем рендерер
 const renderer2 = new WebGLRenderer();
 // Устанавливаем размер canvas
-const canvasWidth = window.innerWidth / 2; // половина ширины экрана
+const canvasWidth = window.innerWidth - Math.floor(window.innerWidth* 0.5); // половина ширины экрана
 const canvasHeight = window.innerHeight;
 renderer2.setSize(canvasWidth, canvasHeight);
 // Получаем DOM элемент canvas
@@ -66877,7 +66878,7 @@ function showMenu(menu, selectedIndex = -1) {
 			mesh.position.x = 0;
 		} else {
 			mesh.position.y = (total-1)/2 * spacing - i*spacing;
-			mesh.position.x = 0;
+			mesh.position.x = 0.3;
 		}
 		scene2.add(mesh);
 		menuMeshes.push(mesh);
@@ -66896,8 +66897,20 @@ const mouse = new Vector2();
 
 function onClick(event) {
   // Переводим координаты мыши в нормализованные
-  mouse.x = (event.clientX / window.innerWidth)  - 1;
+  /* const rect = renderer.domElement.getBoundingClientRect();
+  const rightX = rect.left + rect.width / 2;
+  const rightWidth = rect.width / 2;
+  const rightHeight = rect.height;
+  const rightY = rect.top;
+  const xInPane = (event.clientX - rightX) / rightWidth; // 0..1
+  const yInPane = (event.clientY - rightY) / rightHeight; // 0..1
+  mouse.x = xInPane * 2 - 1;
+  mouse.y = -(yInPane * 2 - 1);
+  console.log( mouse.x, '  ',mouse.y); */
+  mouse.x = (event.clientX / window.innerWidth) + 0.3  - 1;
   mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+  console.log( mouse.x, '  ',mouse.y);
+
   raycaster.setFromCamera(mouse, camera2);
   // Проверяем пересечение с меню
   let intersects = raycaster.intersectObjects([...menuMeshes, backButton].filter(Boolean));
@@ -66911,7 +66924,7 @@ function onClick(event) {
     } else if (mesh.userData.menuItem) {
       const item = mesh.userData.menuItem;
 	  if(item.title == 'Сетка') showGrid = !showGrid;
-	  if(item.title == 'Вращение') controls.npm = !controls.autoRotate;
+	  if(item.title == 'Вращение') controls.autoRotate = !controls.autoRotate;
 	  if(item.title == 'Закончить') {
 		  resultGame(deltaTime, result, gameScore, autoPr);
 		  idx = -1;
@@ -67524,6 +67537,24 @@ document.addEventListener("keydown", e => {
 			newDir = new Vector3(1,0,0);
 			break
 	}
+});
+
+window.addEventListener('resize', () => {
+/* function onWindowResize() { */
+    const width = Math.floor(window.innerWidth* 0.5);
+    const height = window.innerHeight;    
+    renderer.setSize(width, height);    
+    camera.aspect = width / height;   
+    camera.updateProjectionMatrix();
+	len = Math.min(window.innerWidth, window.innerHeight);
+	arenaWidth = Math.round(len * 0.5);                 
+	cellWidth = Math.round(arenaWidth / CELLS_PER_DIMENSION);
+	rightmostCellCenter = cellWidth * CELLS_RIGHT_OF_CENTER;
+	const newWidth = window.innerWidth - Math.floor(window.innerWidth* 0.5);
+    renderer2.setSize(newWidth, window.innerHeight);
+    camera2.aspect = newWidth/window.innerHeight; // обновляем соотношение сторон
+    camera2.updateProjectionMatrix();
+    canvas2.style.width = `${newWidth}px`;
 });
 //render();
 setInterval(render,100);
