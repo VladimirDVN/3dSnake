@@ -66668,6 +66668,7 @@ const renderer2 = new WebGLRenderer();
 // Устанавливаем размер canvas
 const canvasWidth = window.innerWidth - Math.floor(window.innerWidth* 0.5); // половина ширины экрана
 const canvasHeight = window.innerHeight;
+console.log('canvasWidth', canvasWidth);
 renderer2.setSize(canvasWidth, canvasHeight);
 // Получаем DOM элемент canvas
 const canvas2 = renderer2.domElement;
@@ -66878,7 +66879,7 @@ function showMenu(menu, selectedIndex = -1) {
 			mesh.position.x = 0;
 		} else {
 			mesh.position.y = (total-1)/2 * spacing - i*spacing;
-			mesh.position.x = -0.27;		//-0.25;
+			mesh.position.x = 0;		//-0.27;
 		}
 		scene2.add(mesh);
 		menuMeshes.push(mesh);
@@ -66898,8 +66899,9 @@ const mouse = new Vector2();
 function onClick(event) {
   // Переводим координаты мыши в нормализованные
   const rect = renderer.domElement.getBoundingClientRect();
-  const rightX = rect.left + rect.width / 2;
-  const rightWidth = rect.width / 2;
+  /* const rightX = rect.left + rect.width / 2; */
+  const rightX = 0 + window.innerWidth/2;
+  const rightWidth = window.innerWidth/2;
   const rightHeight = rect.height;
   const rightY = rect.top;
   const xInPane = (event.clientX - rightX) / rightWidth; // 0..1
@@ -66907,10 +66909,10 @@ function onClick(event) {
   console.log(xInPane,'xInPane',yInPane);
   mouse.x = xInPane * 2 - 1;
   mouse.y = -(yInPane * 2 - 1);
-  console.log( mouse.x, ' mouse.x ',mouse.y);
-  mouse.x = (event.clientX / window.innerWidth) - 1;
+  console.log( mouse.x, ' mouse.y ',mouse.y);
+  /* mouse.x = (event.clientX / window.innerWidth) - 1;
   mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-  console.log( mouse.x, 'mouse.x yyy  ',mouse.y);
+  console.log( mouse.x, 'mouse.x yyy  ',mouse.y); */
 
   raycaster.setFromCamera(mouse, camera2);
   // Проверяем пересечение с меню
