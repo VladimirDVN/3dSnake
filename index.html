@@ -1,19 +1,115 @@
 <!DOCTYPE html>
-<html>
-	<head>
-	  <meta charset=utf-8>
-	  <link rel="stylesheet" href="/style.css"> 
-	</head>
 <html lang="en">
+
+	<head>
+	  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link rel="stylesheet" href="/style.css"> 
+	  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+        }
+        .menu-panel {
+            position: fixed;
+            top: 0;
+            right: -200px; /* Скрыто за пределами экрана */
+            width: 200px;
+            height: 100vh;
+            background: rgba(0,0, 0, 0);
+            backdrop-filter: blur(10px);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .menu-panel.active {
+            right: 0; /* Показываем меню */
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .menu-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #00bfff, #00bfff);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #00bfff, #00bfff);
+        }
+
+        .menu-button:active {
+            transform: translateY(-1px);
+        }
+
+        .title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 100;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+      </style>
+	</head>
 <body>
-  <!-- <header class="header">
-    <div class="result">
-      Результат: <span id="result">0</span> |
-      Время: <span id="time">0</span> с |
-      Съедено: <span id="score">0</span>
+    <div class="menu-panel" id="menuPanel">
+        <div class="menu-container">
+            <button class="menu-button" onclick="handleMenuClick('←')">←</button>
+            <button class="menu-button" onclick="handleMenuClick('→')">→</button>
+            <button class="menu-button" onclick="handleMenuClick('↑')">↑</button>
+            <button class="menu-button" onclick="handleMenuClick('↓')">↓</button>
+            <button class="menu-button" onclick="handleMenuClick('w')">w</button>
+            <button class="menu-button" onclick="handleMenuClick('s')">s</button>
+        </div>
     </div>
-  </header> -->
 <script type="module" src="dist/main-out.js"></script>
 </body>
-
 </html>
