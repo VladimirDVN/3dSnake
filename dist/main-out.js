@@ -66878,7 +66878,7 @@ function showMenu(menu, selectedIndex = -1) {
 			mesh.position.x = 0;
 		} else {
 			mesh.position.y = (total-1)/2 * spacing - i*spacing;
-			mesh.position.x = 0.3;
+			mesh.position.x = -0.27;		//-0.25;
 		}
 		scene2.add(mesh);
 		menuMeshes.push(mesh);
@@ -66897,25 +66897,28 @@ const mouse = new Vector2();
 
 function onClick(event) {
   // Переводим координаты мыши в нормализованные
-  /* const rect = renderer.domElement.getBoundingClientRect();
+  const rect = renderer.domElement.getBoundingClientRect();
   const rightX = rect.left + rect.width / 2;
   const rightWidth = rect.width / 2;
   const rightHeight = rect.height;
   const rightY = rect.top;
   const xInPane = (event.clientX - rightX) / rightWidth; // 0..1
   const yInPane = (event.clientY - rightY) / rightHeight; // 0..1
+  console.log(xInPane,'xInPane',yInPane);
   mouse.x = xInPane * 2 - 1;
   mouse.y = -(yInPane * 2 - 1);
-  console.log( mouse.x, '  ',mouse.y); */
-  mouse.x = (event.clientX / window.innerWidth) + 0.3  - 1;
+  console.log( mouse.x, ' mouse.x ',mouse.y);
+  mouse.x = (event.clientX / window.innerWidth) - 1;
   mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-  console.log( mouse.x, '  ',mouse.y);
+  console.log( mouse.x, 'mouse.x yyy  ',mouse.y);
 
   raycaster.setFromCamera(mouse, camera2);
   // Проверяем пересечение с меню
   let intersects = raycaster.intersectObjects([...menuMeshes, backButton].filter(Boolean));
   if (intersects.length > 0) {
     const mesh = intersects[0].object;
+	if(mesh.userData.menuItem.title == 'Играть')
+		showMenu2();
 	let idx = menuMeshes.indexOf(mesh);
     if (mesh === backButton) {
       // Возврат к предыдущему уровню
@@ -66932,7 +66935,10 @@ function onClick(event) {
 		  autoPr = false;
 	  }
 	  if(item.title == 'Выход') closeApp();
-	  if(item.title == 'Ещё раз') onceMore();
+	  if(item.title == 'Ещё раз') {
+		  hideMenu2();
+		  onceMore();
+	  }
 	  if(item.title == 'Помощь') {		
 		  currentMenu = menuStack.pop();
 		  currentMenu = menuTree;
@@ -66942,6 +66948,7 @@ function onClick(event) {
 		  renderer2.setClearColor(0x000000, 1);
 		  scene2.add(directional);
 		  scene2.add(directional2);
+		  hideMenu2();
 		  helpText();
 		  showMenu(currentMenu);
 		  return;
@@ -66968,7 +66975,6 @@ function onClick(event) {
     }
   }
 }
-
 window.addEventListener('click', onClick);
 helpText();
 showMenu(currentMenu);
@@ -67559,7 +67565,15 @@ window.addEventListener('resize', () => {
 //render();
 setInterval(render,100);
 
-function closeApp() {
+window.addEventListener('beforeunload', function() {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+    }
+    if (renderer) {
+        renderer.dispose();
+    }
+});
+function closeApp() {	
     // Перенаправление на about:blank
 	window.location.href = 'about:blank';
 	// Или полное закрытие через закрытие браузера
@@ -67596,4 +67610,50 @@ function onceMore(){
 	scene2.add(directional2);
 	helpText();
 	showMenu(currentMenu);
+}
+        // Функция показа меню (для внешних событий)
+function showMenu2() {
+    const menuPanel = document.getElementById('menuPanel');
+    menuPanel.classList.add('active');
+}
+        // Функция скрытия меню (для внешних событий)
+function hideMenu2() {
+    const menuPanel = document.getElementById('menuPanel');
+    menuPanel.classList.remove('active');
+}
+  
+document.querySelector('.menu-container');
+const menuButtons = document.querySelectorAll('.menu-button');
+menuButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        handleMenuClick(button.textContent);
+    });
+});
+function handleMenuClick(button) {
+    switch(button) {
+		case 'w':
+			direction.z = -cellWidth;
+			newDir = new Vector3(0,0,-1);
+			break
+		case 's':
+			direction.z = cellWidth;
+			newDir = new Vector3(0,0,1);
+			break
+		case '↓':
+			direction.y = -cellWidth;
+			newDir = new Vector3(0,-1,0);
+			break
+		case '↑':
+			direction.y = cellWidth;										
+			newDir = new Vector3(0,1,0);								
+			break
+		case '←':
+			direction.x = -cellWidth;
+			newDir = new Vector3(-1,0,0);
+			break
+		case '→':
+			direction.x = cellWidth;
+			newDir = new Vector3(1,0,0);
+			break
+    }
 }
