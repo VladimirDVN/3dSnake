@@ -51,7 +51,7 @@
         .menu-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #00bfff, #00bfff);
+            background: linear-gradient(45deg, #00bfff, #00bf00);
         }
 
         .menu-button:active {
@@ -99,6 +99,18 @@
             <button class="menu-button" onclick="handleMenuClick('s')">s</button>
         </div>
     </div>
-<script type="module" src="dist/main-out.js"></script>
+	<link rel="manifest" href="main.webmanifest.json">
+	<script>
+	   if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('sw.js')
+		  .then(function(registration) {
+						console.log('Registration successful, scope is:', registration.scope);
+					})
+					.catch(function(error) {
+						console.log('Service worker registration failed, error:', error);
+					});
+	   }
+	</script>
+	<script type="module" src="dist/main-out.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+{
+    "name": "3dSnakePWA",
+    "short_name": "3dSnake",
+    "display": "fullscreen",
+	 "id": "/index.html",
+  "start_url": "/index.html",
+    "scope": "/",
+    "theme_color": "#0077ff",
+    "description": "This app will let your snake to eat more apples",
+    "icons": [
+		{
+            "src": "png/head-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+		{
+            "src": "png/d512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
