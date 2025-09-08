@@ -104,11 +104,6 @@
       "sizes": "70x70"
     },
     {
-      "src": "ms-icon-150x150.png",
-      "type": "image/png",
-      "sizes": "150x150"
-    },
-    {
       "src": "ms-icon-310x310.png",
       "type": "image/png",
       "sizes": "310x310"
