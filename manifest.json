@@ -10,17 +10,17 @@
   "categories": "games",
   "icons": [
 		{
-		    "src": "fav/favicon.ico",
+		    "src": "png/favicon.ico",
             "sizes": "48x48 32x32 16x16",
             "type": "image/x-icon"
 		},
 		{
-            "src": "fav/favicon-32x32.png",
+            "src": "png/favicon-32x32.png",
             "sizes": "32x32",
             "type": "image/png"
         },
 		{
-            "src": "fav/favicon-180x180.png",
+            "src": "png/favicon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
@@ -40,4 +40,5 @@
             "type": "image/png"
         }
     ]
+
 }
