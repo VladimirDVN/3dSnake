@@ -74,11 +74,6 @@
       "sizes": "120x120"
     },
     {
-      "src": "apple-icon-144x144.png",
-      "type": "image/png",
-      "sizes": "144x144"
-    },
-    {
       "src": "apple-icon-152x152.png",
       "type": "image/png",
       "sizes": "152x152"
