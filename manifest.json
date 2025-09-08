@@ -104,11 +104,6 @@
       "sizes": "16x16"
     },
     {
-      "src": "favicon-32x32.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
       "src": "favicon-96x96.png",
       "type": "image/png",
       "sizes": "96x96"
@@ -117,11 +112,6 @@
       "src": "ms-icon-70x70.png",
       "type": "image/png",
       "sizes": "70x70"
-    },
-    {
-      "src": "ms-icon-144x144.png",
-      "type": "image/png",
-      "sizes": "144x144"
     },
     {
       "src": "ms-icon-150x150.png",
