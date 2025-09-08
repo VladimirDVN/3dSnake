@@ -29,16 +29,6 @@
       "sizes": "96x96"
     },
     {
-      "src": "android-icon-192x192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "apple-icon.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
       "src": "apple-icon-57x57.png",
       "type": "image/png",
       "sizes": "57x57"
