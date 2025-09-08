@@ -2,6 +2,7 @@
   "theme_color": "#11a8a3",
   "background_color": "#8bf2ed",
   "short_name": "3dSnake",
+  "start_url": "/",
   "display": "fullscreen",
   "id": "/3dSnake/",
   "orientation": "landscape",
@@ -40,6 +41,4 @@
             "type": "image/png"
         }
     ]
-
 }
-
