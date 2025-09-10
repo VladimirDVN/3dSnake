@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
+	<link rel="manifest" href="manifest.json">
+	<script>
+	   if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register('sw.js')
+		  .then(function(registration) {
+						console.log('Registration successful, scope is:', registration.scope);
+					})
+					.catch(function(error) {
+						console.log('Service worker registration failed, error:', error);
+					});
+	   }
+	</script>
 	<head>
 	  <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <link rel="manifest" href="manifest.json">
-	  <meta name="mobile-web-app-capable" content="yes">
 	  <meta name="application-name" content="3dSnake">
-	  <meta name="apple-mobile-web-app-title" content="3dSnake">
-	  <meta name="theme-color" content="#11a8a3">
-	  <meta name="msapplication-navbutton-color" content="#11a8a3">
-	  <link rel="manifest" href="main.webmanifest.json">
 	  <style>
+		* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000 0%, #000000 100%);
+        }
         .menu-panel {
             position: fixed;
             top: 0;
@@ -63,35 +77,6 @@
         .menu-button:active {
             transform: translateY(-1px);
         }
-
-        .title {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            z-index: 100;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .toggle-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
       </style>
 	</head>
 <body>
@@ -105,17 +90,6 @@
             <button class="menu-button" onclick="handleMenuClick('s')">s</button>
         </div>
     </div>
-	<script>
-	   if ('serviceWorker' in navigator) {
-		  navigator.serviceWorker.register('sw.js')
-		  .then(function(registration) {
-						console.log('Registration successful, scope is:', registration.scope);
-					})
-					.catch(function(error) {
-						console.log('Service worker registration failed, error:', error);
-					});
-	   }
-	</script>
 	<script type="module" src="dist/main-out.js"></script>
 </body>
 </html>

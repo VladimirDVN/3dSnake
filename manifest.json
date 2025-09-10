@@ -8,7 +8,7 @@
       "sizes": "1958x966",
       "form_factor": "wide"
     }
-  ]
+  ],
   "start_url": "/",
   "display": "fullscreen",
   "id": "/3dSnake/",
@@ -35,6 +35,11 @@
 		{
 		    "src": "png/favicon-96x96.png",
             "sizes": "96x96",
+            "type": "image/png"
+		},
+		{
+		    "src": "png/ms-icon-144x144.png",
+            "sizes": "144x144",
             "type": "image/png"
 		}
     ]
