@@ -8,7 +8,7 @@ self.addEventListener('install', event => {
               '/',
               '/index.html',
 			  '/main.webmanifest.json',
-               '/main.js',
+               '/dist/main-out.js',
               '/png/head.png',
               '/png/chewing_apple.mp3',
 			  '/png/chewing_apple.wav',
