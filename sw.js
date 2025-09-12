@@ -7,7 +7,7 @@ self.addEventListener('install', event => {
             cache.addAll([
               '/',
               '/index.html',
-			  '/main.webmanifest.json',
+			  '/manifest.json',
                '/dist/main-out.js',
               '/png/head.png',
               '/png/chewing_apple.mp3',
@@ -38,4 +38,5 @@ self.addEventListener('fetch', event => {
           }
         })
     );
+
 });
