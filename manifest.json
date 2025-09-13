@@ -9,7 +9,7 @@
       "form_factor": "wide"
     }
   ],
-  "start_url": "/",
+  "start_url": "./",
   "display": "fullscreen",
   "id": "/3dSnake/",
   "orientation": "landscape",
@@ -43,4 +43,5 @@
             "type": "image/png"
 		}
     ]
+
 }
