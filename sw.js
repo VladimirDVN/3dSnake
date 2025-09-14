@@ -8,19 +8,13 @@ self.addEventListener('install', event => {
               '/',
               '/index.html',
 			  '/manifest.json',
-               '/dist/main-out.js',
-              '/png/head.png',
-              '/png/chewing_apple.mp3',
-			  '/png/chewing_apple.wav',
-			  '/png/favicon-16x16.png',
-			  '/png/favicon-32x32.png',
-			  '/png/favicon-96x96.png',
-			  '/png/head.ico',
-              '/png/head-256.png',
-              '/png/skin1.png',
-			  '/png/2.glb',
+              '/main-out.js',
+              '/favicon.ico',
+              '/icons/icon-192x192.png',
+              '/icons/icon-512x512.png',
+              '/chewing_apple.wav',
 			  '/Arial_Regular.json',
-			  '/png/Apple.glb'
+			  '/helvetiker_regular.typeface.json'
             ]);
           }));
   });
