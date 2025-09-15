@@ -9,7 +9,7 @@
       "form_factor": "wide"
     }
   ],
-  "start_url": "/",
+  "start_url": "./",
   "display": "fullscreen",
   "id": "/3dSnake/",
   "orientation": "landscape",
@@ -41,11 +41,6 @@
 		    "src": "png/ms-icon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
-		},
-		{
-		  "src": "favicon.ico",
-		  "sizes": "16x16",
-		  "type": "image/x-icon"
 		},
 		{
 		  "src": "icons/icon-192x192.png",
