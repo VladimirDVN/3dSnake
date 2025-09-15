@@ -31,8 +31,10 @@ self.addEventListener('fetch', event => {
       caches.match(event.request)
         .then(response => {
           if (response) {
+			  console.log('1 ',response)
             return response;
           } else {
+			  console.log('2 ',fetch(event.request));
             return fetch(event.request);
           }
         })
