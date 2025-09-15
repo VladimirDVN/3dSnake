@@ -4,39 +4,40 @@ self.addEventListener('install', event => {
         caches.open('static')
           .then(cache => {
             console.log('[Service Worker] Precaching App Shell');
-            cache.addAll([
-              '/',
-              '/index.html',
-			  '/manifest.json',
-              '/dist/main-out.js',
-              '/png/head.png',
-			  '/chewing_apple.wav',
-			  '/png/favicon-16x16.png',
-			  '/png/favicon-32x32.png',
-			  '/png/favicon-96x96.png',
-			  '/icons/icon-192x192.png',
-              '/icons/icon-512x512.png',
-              '/png/skin1.png',
-			  '/png/2.glb',
-			  '/Arial_Regular.json',
-			  '/png/Apple.glb'
+            // ВАЖНО: относительные пути для GitHub Pages (без ведущего "/")
+            return cache.addAll([
+              './',
+              'index.html',
+              'manifest.json',
+              'main-out.js',
+              'favicon.ico',
+              'icons/icon-192x192.png',
+              'icons/icon-512x512.png',
+              'chewing_apple.wav',
+              'Arial_Regular.json',
+              'helvetiker_regular.typeface.json'
             ]);
-          }));
-  });
+          })
+          .then(() => self.skipWaiting())
+    );
+});
 self.addEventListener('activate', event => {
   console.log('SW now ready to handle fetches!');
+  event.waitUntil(self.clients.claim());
 });
 self.addEventListener('fetch', event => {
+    const request = event.request;
+
+    // Навигационные запросы → отдаем index.html из кэша (SPA навигация офлайн)
+    if (request.mode === 'navigate') {
+      event.respondWith(
+        caches.match('index.html').then(cached => cached || fetch(request))
+      );
+      return;
+    }
+
+    // Статика → Cache First
     event.respondWith(
-      caches.match(event.request)
-        .then(response => {
-          if (response) {
-			  console.log('1 ',response)
-            return response;
-          } else {
-			  console.log('2 ',fetch(event.request));
-            return fetch(event.request);
-          }
-        })
+      caches.match(request).then(response => response || fetch(request))
     );
 });
