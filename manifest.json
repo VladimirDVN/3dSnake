@@ -1,7 +1,17 @@
 {
   "theme_color": "#11a8a3",
   "background_color": "#8bf2ed",
-  "short_name": "3dSnake",
+  "name": "3dSnake",
+  "protocol_handlers": [
+    {
+      "protocol": "web+3dsnake",
+      "url": "/lookup?type=%s"
+    },
+    {
+      "protocol": "web+3dsnakestore",
+      "url": "/shop?for=%s"
+    }
+  ],
    "screenshots": [
     {
       "src": "png/screenshot-desktop.png",
