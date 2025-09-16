@@ -4,11 +4,11 @@
   "name": "3dSnake",
   "protocol_handlers": [
     {
-      "protocol": "web+3dsnake",
+      "protocol": "web+snak",
       "url": "/lookup?type=%s"
     },
     {
-      "protocol": "web+3dsnakestore",
+      "protocol": "web+snakstore",
       "url": "/shop?for=%s"
     }
   ],
