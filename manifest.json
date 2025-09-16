@@ -2,16 +2,6 @@
   "theme_color": "#11a8a3",
   "background_color": "#8bf2ed",
   "name": "3dSnake",
-  "protocol_handlers": [
-    {
-      "protocol": "web+snak",
-      "url": "/lookup?type=%s"
-    },
-    {
-      "protocol": "web+snakstore",
-      "url": "/shop?for=%s"
-    }
-  ],
    "screenshots": [
     {
       "src": "png/screenshot-desktop.png",
@@ -65,4 +55,5 @@
             "type": "image/png"
 		}
     ]
+
 }
