@@ -9,12 +9,13 @@ self.addEventListener('install', event => {
               './',
               'index.html',
               'manifest.json',
-              'dist/main-out.js',
+              'main-out.js',
               'favicon.ico',
-              'png/icon-192x192.png',
-              'png/icon-512x512.png',
+              'icons/icon-192x192.png',
+              'icons/icon-512x512.png',
               'chewing_apple.wav',
               'Arial_Regular.json',
+              'helvetiker_regular.typeface.json'
             ]);
           })
           .then(() => self.skipWaiting())
