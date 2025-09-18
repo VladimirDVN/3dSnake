@@ -1,7 +1,7 @@
 {
   "theme_color": "#11a8a3",
   "background_color": "#8bf2ed",
-  "name": "3dSnake",
+  "short_name": "3dSnake",
    "screenshots": [
     {
       "src": "png/screenshot-desktop.png",
@@ -17,18 +17,6 @@
   "description": "Познакомиться с 3D games",
   "categories": "games",
   "icons": [
-  		{
-		  "src": "png/icon-512x512.png",
-		  "sizes": "512x512",
-		  "type": "image/png",
-		  "purpose": "any maskable"
-		},
-		{
-  		  "src": "png/icon-192x192.png",
-		  "sizes": "192x192",
-		  "type": "image/png",
-		  "purpose": "any maskable"
-		},
 		{
 		    "src": "png/favicon.ico",
             "sizes": "16x16",
@@ -53,7 +41,18 @@
 		    "src": "png/ms-icon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
+		},
+		{
+		  "src": "icons/icon-192x192.png",
+		  "sizes": "192x192",
+		  "type": "image/png",
+		  "purpose": "any maskable"
+		},
+		{
+		  "src": "icons/icon-512x512.png",
+		  "sizes": "512x512",
+		  "type": "image/png",
+		  "purpose": "any maskable"
 		}
     ]
-
 }
